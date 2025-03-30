@@ -1,0 +1,5 @@
+Aire acondicionado, 300.0, 8, ¡Alerta! Stock por debajo de 10 unidades
+Lavadora,280.0,15
+Cafetera,60.0,11
+Computadora,280.0,10
+Cocinas, 160.0, 5, ¡Alerta! Stock por debajo de 10 unidades

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .choices {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .score {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .choices-display {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 30px 0;
+        }
+
+        .choice-box {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Piedra, Papel o Tijera</h1>
+        
+        <div class="choices">
+            <button onclick="play('rock')">🗿 Piedra</button>
+            <button onclick="play('paper')">📄 Papel</button>
+            <button onclick="play('scissors')">✂️ Tijera</button>
+        </div>
+
+        <div class="choices-display">
+            <div class="choice-box" id="user-choice">❔</div>
+            <div class="choice-box" id="computer-choice">❔</div>
+        </div>
+
+        <div class="result" id="result">Elige una opción para comenzar</div>
+        
+        <div class="score">
+            <p>Jugador: <span id="user-score">0</span></p>
+            <p>Computadora: <span id="computer-score">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        let userScore = 0;
+        let computerScore = 0;
+        const choices = ['rock', 'paper', 'scissors'];
+        const emojis = {
+            rock: '🗿',
+            paper: '📄',
+            scissors: '✂️'
+        };
+
+        
+
+        function play(userChoice) {
+            // Obtener elección de la computadora
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            
+            // Mostrar elecciones
+            document.getElementById('user-choice').textContent = emojis[userChoice];
+            document.getElementById('computer-choice').textContent = emojis[computerChoice];
+            
+            // Determinar el resultado
+            let result;
+            if (userChoice === computerChoice) {
+                result = "Empate!";
+            } else if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'paper' && computerChoice === 'rock') ||
+                (userChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                result = "Ganaste! 🎉";
+                userScore++;
+            } else {
+                result = "Perdiste! 😢";
+                computerScore++;
+            }
+
+            // Actualizar la interfaz
+            document.getElementById('result').textContent = result;
+            document.getElementById('user-score').textContent = userScore;
+            document.getElementById('computer-score').textContent = computerScore;
+        }
+    </script>
+</body>
+</html>
